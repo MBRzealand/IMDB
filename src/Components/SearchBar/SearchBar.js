@@ -3,14 +3,26 @@ import "./SearchStyle.css"
 import Search from "./search.png"
 import IMDb from "./logo.png"
 
-const SearchBar = () => {
+const SearchBar = (props) => {
+
     return (
         <div className={"search-bar"}>
             <img src={IMDb} className={"logo"}/>
-            <input className="text-input" type="text" placeholder="Search IMDb"/>
-            <img className={"search-button"} src={Search}/>
+            <input
+                type="text"
+                className="text-input"
+                placeholder="Search IMDb"
+                name="searchInput"
+                value={props.searchInput}
+                onChange={props.handleChange}
+            />
+            <img
+                className={"search-button"}
+                src={Search}
+                onClick={props.handleSubmit}
+            />
         </div>
     );
-};
+}
 
 export default SearchBar;
