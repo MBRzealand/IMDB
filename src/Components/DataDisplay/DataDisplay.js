@@ -1,7 +1,8 @@
-import React from 'react';
 import "./DataStyle.css"
 
 const DataDisplay = (props) => {
+
+    const movieList = props.APIData.map(movie => <li key={movie.id}>{movie.title}</li>)
 
     return (
         <div className={"data-page"}>
@@ -11,10 +12,7 @@ const DataDisplay = (props) => {
                 <h5 className={"title-text"}>Titles</h5>
                 <div >
                     <ul className={"title-list"}>
-                        <li>blabla</li>
-                        <li>blabla</li>
-                        <li>blabla</li>
-                        <li>blabla</li>
+                        {movieList.length>0 && movieList}
                     </ul>
                 </div>
             </div>

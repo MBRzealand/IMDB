@@ -15,6 +15,7 @@ const SearchBar = (props) => {
                 name="searchInput"
                 value={props.searchInput}
                 onChange={props.handleChange}
+                onKeyPress={props.handleKeyPress}
             />
             <img
                 className={"search-button"}

@@ -1,12 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter} from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {configureStore} from "@reduxjs/toolkit";
+import {Provider} from "react-redux";
+import searchReducer from "./Features/search";
+
+const store = configureStore({
+    reducer: {
+        search: searchReducer
+    }
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <Provider store={store}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+      </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
