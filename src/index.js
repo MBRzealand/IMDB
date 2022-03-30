@@ -6,7 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
-import searchReducer from "./Features/search";
+import searchReducer from "./features/search";
 
 const store = configureStore({
     reducer: {

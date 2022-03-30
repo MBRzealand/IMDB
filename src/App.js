@@ -1,70 +1,59 @@
 import SearchBar from "./Components/SearchBar/SearchBar";
 import DataDisplay from "./Components/DataDisplay/DataDisplay";
-import React, {useState} from "react";
 import {useEffect} from "react";
 import "./App.css"
+import {useDispatch, useSelector} from "react-redux";
+import {getMovieThunk, searchMovie} from "./features/search";
 
 function App() {
 
-    // const search = useSelector((state) => state.search.value);
-
-    const [search, setSearch] = useState({
-        searchInput: "",
-    });
-
-    const [selectedSearch, setSelectedSearch] = useState("");
-
-    const [APIData, setAPIData] = useState([]);
+    const input = useSelector(state => state.search.value);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        if(selectedSearch !== ""){
-            fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&include_adult=true&query=${selectedSearch}`)
-            .then(res => res.json())
-            .then(data => {
-                setAPIData(data.results);
-            }).catch(error => console.log('error', error));
-        }
-        return () => {
-            setAPIData([]);
-        }
 
-    }, [selectedSearch]);
+        dispatch(getMovieThunk(input.selected))
+
+    }, [input.selected]);
 
     const handleChange = (event) => {
-
         const {name,value} = event.target
-        setSearch(prevSearch => {
-            return {
-                ...prevSearch,
+        dispatch(searchMovie({
+                ...input,
                 [name]: value
             }
-        })
+        ))
     }
 
     const handleKeyPress = (event) => {
         if(event.key === "Enter"){
-            setSelectedSearch(prevSelectedSearch => search.searchInput)
+            dispatch(searchMovie({
+                ...input,
+                selected: input.searchInput
+            }
+        ))
         }
-
     }
 
-    function handleSubmit(event) {
-        event.preventDefault()
-        setSelectedSearch(prevSelectedSearch => search.searchInput)
-
+    const handleSubmit = (event) => {
+            dispatch(searchMovie({
+                    ...input,
+                    selected: input.searchInput
+                }
+            ))
     }
 
   return (
     <div className="App">
       <SearchBar
-        searchInput={search.searchInput}
+        searchInput={input.searchInput}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         handleKeyPress={handleKeyPress}
       />
       <DataDisplay
-          searchInput={selectedSearch}
-          APIData={APIData}
+          searchInput={input.selected}
+          APIData={input.apiResponse}
       />
     </div>
   );
