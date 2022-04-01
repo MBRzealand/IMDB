@@ -7,10 +7,14 @@ import reportWebVitals from './reportWebVitals';
 import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
 import searchReducer from "./features/search";
+import selectReducer from "./features/select";
+import confirmReducer from "./features/confirm";
 
 const store = configureStore({
     reducer: {
-        search: searchReducer
+        search: searchReducer,
+        select: selectReducer,
+        confirm: confirmReducer
     }
 });
 

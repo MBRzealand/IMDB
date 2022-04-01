@@ -1,13 +1,16 @@
 import React from 'react';
+import {useSelector} from "react-redux";
 
-const MovieInfo = (props) => {
+const MovieInfo = () => {
+
+    const state = useSelector(state => state.select.value);
+
+    console.log(state)
+
     return (
         <div>
-            <h1>{props.title}</h1>
-            <p>{props.description}</p>
-            <p>{props.original_language}</p>
-            <p>{props.release_date}</p>
-            <p>{props.overview}</p>
+            <h1>{state.original_title}</h1>
+            <p>{state.overview}</p>
         </div>
     );
 };
