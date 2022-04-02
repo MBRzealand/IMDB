@@ -6,7 +6,8 @@ const confirmSlice = createSlice({
     initialState: {
         value: {
             selected: "",
-            apiResponse: []
+            apiResponse: [],
+            genres:[]
         }
     },
     reducers: {
@@ -16,10 +17,13 @@ const confirmSlice = createSlice({
         fetchMovie: (state, action) =>{
             state.value.apiResponse = action.payload.map(movie => {return movie})
         },
+        fetchGenres: (state, action) =>{
+            state.value.genres = action.payload
+        }
     },
 })
 
-export const {setSelected, fetchMovie} = confirmSlice.actions
+export const {setSelected, fetchMovie, fetchGenres} = confirmSlice.actions
 
 export const getMovieThunk = (selected) => async (dispatch) => {
     if(selected !== "") {
@@ -33,6 +37,18 @@ export const getMovieThunk = (selected) => async (dispatch) => {
             console.log(err)
         }
     }
+}
+
+export const getGenresThunk = () => async (dispatch) => {
+        try {
+            const response = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
+            console.log('success')
+            console.log(response.data)
+            dispatch(fetchGenres(response.data))
+
+        } catch (err) {
+            console.log(err)
+        }
 }
 
 export default confirmSlice.reducer

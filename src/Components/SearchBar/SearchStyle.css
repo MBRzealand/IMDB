@@ -1,7 +1,9 @@
 .search-bar{
     display: flex;
     padding: 1.5vh 0;
-    height: 4vh;
+    align-items: center;
+    justify-content: center;
+    height: 3vh;
     width: 100%;
     background-color: hsl(0, 0%, 7%);
 }
@@ -10,11 +12,13 @@
     font-family: "Dubai Light", serif;
     border-width: 0;
     outline: 0;
-    border-radius: 5px;
-    width: 50%;
+    border-radius: 2px;
+    width: 42%;
+    height: 3vh;
     color: hsla(0,0%,0%,0.90);
     padding-left: 1%;
-    background: rgba(250, 250, 250, 0.93);
+    background: rgb(255, 255, 255);
+    margin-right: 16%;
 }
 
 .text-input::placeholder {
@@ -24,15 +28,16 @@
 .search-button{
     position: relative;
     align-self: center;
-    width: 24px;
+    width: 18px;
     z-index: 2;
-    right: 3%;
+    right: 18%;
     cursor: pointer;
 }
 
 .logo{
-    margin-left: 8%;
     align-self: center;
+    height: 3.2vh;
     width: 40px;
-    padding-right: 15%;
+    margin-right: 5%;
+    cursor: pointer;
 }

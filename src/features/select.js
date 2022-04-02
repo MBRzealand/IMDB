@@ -10,6 +10,7 @@ const selectSlice = createSlice({
             overview: "",
             poster_path: "",
             backdrop_path: "",
+            genre_ids: [],
             id: "",
             runtime: "",
         },

@@ -33,10 +33,11 @@ const DataDisplay = () => {
 
             <div className={"search-cards"}>
                 <div className={"category-search"}>
-                    <h5 className={"crud-title"}>CRUD Operations</h5>
+                    <h5 className={"crud-title"}>Category Search</h5>
 
                 </div>
                 <div className={"advanced-search"}>
+                    <h5 className={"crud-title"}>Advanced Search</h5>
 
                 </div>
             </div>

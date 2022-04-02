@@ -5,12 +5,14 @@ import IMDb from "./logo.png"
 import {useDispatch, useSelector} from "react-redux";
 import {searchMovie} from "../../features/search";
 import {setSelected} from "../../features/confirm";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
 
     const searchState = useSelector(state => state.search.value);
     const confirmState = useSelector(state => state.confirm.value);
     const dispatch = useDispatch()
+    let navigate = useNavigate();
 
     const handleChange = (event) => {
         const {value} = event.target
@@ -29,7 +31,8 @@ const SearchBar = () => {
                     selected: searchState.searchInput
                 }
             ))
-            console.log(searchState.searchInput)
+
+            return navigate("/")
         }
     }
 
@@ -39,11 +42,13 @@ const SearchBar = () => {
                 selected: searchState.searchInput
             }
         ))
+
+        return navigate("/")
     }
 
     return (
         <div className={"search-bar"}>
-            <img src={IMDb} className={"logo"}/>
+            <img onClick={() => {return navigate("/")}} src={IMDb} className={"logo"}/>
             <input
                 type="text"
                 className="text-input"

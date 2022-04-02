@@ -3,7 +3,7 @@ import DataDisplay from "./Components/DataDisplay/DataDisplay";
 import {useEffect} from "react";
 import "./App.css"
 import {useDispatch, useSelector} from "react-redux";
-import {getMovieThunk} from "./features/confirm";
+import {getGenresThunk, getMovieThunk} from "./features/confirm";
 import {
     Routes,
     Route,
@@ -19,8 +19,13 @@ function App() {
 
         dispatch(getMovieThunk(confirmState.selected))
 
-    }, [confirmState.selected]);
+    }, [confirmState.selected, dispatch]);
 
+    useEffect(() => {
+
+        dispatch(getGenresThunk())
+
+    }, [dispatch]);
 
 
   return (
